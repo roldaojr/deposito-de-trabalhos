@@ -1,12 +1,12 @@
 package trabalhos
-
+import grails.rest.Resource;
 /**
  * Autor de um trabalho
  */
+@Resource()
 class Autor {
 	String nome
 
-	static belongsTo = [trabalho: Trabalho]
 	static hasMany = [trabalho: Trabalho]
 
 	static constraints = {

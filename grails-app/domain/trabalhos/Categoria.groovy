@@ -1,13 +1,13 @@
 package trabalhos
-
+import grails.rest.Resource;
 /**
  * Categoria de um trabalho
  */
+@Resource()
 class Categoria {
 	String nome
 
-	static belongsTo = [trabalho: Trabalho]
-	static hasMany = [trabalho: Trabalho]
+	static hasMany = [trabalhos: Trabalho]
 
 	static constraints = {
 		nome nullable: false, blank: false

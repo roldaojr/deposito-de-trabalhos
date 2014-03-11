@@ -1,5 +1,9 @@
 package trabalhos
-
+import grails.rest.Resource;
+/**
+ * Arquivo de um trabalho
+ */
+@Resource()
 class Arquivo {
 	String formato
 	Integer tamanho
