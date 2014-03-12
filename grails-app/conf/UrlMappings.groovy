@@ -2,7 +2,7 @@ class UrlMappings {
 
 	static mappings = {
 		"/api/status"(controller:"status", action:"index", method:"GET")
-        "/api/categorias"(resources:"categoria")
+        //"/api/categorias"(resources:"categoria")
         "/api/autores"(resources:"autor")
         "/api/orientadores"(resources:"orientador")
         "/api/trabalhos"(resources:"trabalho")

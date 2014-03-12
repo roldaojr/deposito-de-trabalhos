@@ -1,5 +1,5 @@
-<div ng-controller="CategoriaListCtrl">
-    <h1 class="page-header">Categorias</h1>
+<div ng-controller="ListOrientadorCtrl">
+    <h1 class="page-header">Orientadores</h1>
     <table class="table">
         <thead>
             <tr>
@@ -8,20 +8,20 @@
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="e in categorias">
+            <tr ng-repeat="e in orientadores">
                 <td>{{e.nome}}</td>
                 <td class="col-md-1">
-                    <a ng-click="editCategoria($index)"><i class="icon-pencil"></i></a>
+                    <a ng-click="editOrientador($index)"><i class="icon-pencil"></i></a>
                     &nbsp;
-                    <a ng-click="delCategoria($index)"><i class="icon-remove-circle"></i></a></td>
+                    <a ng-click="delOrientador($index)"><i class="icon-remove-circle"></i></a></td>
             </tr>
         </tbody>
     </table>
 <!-- ng-show="user.username" -->
     <p>
         <button type="button" class="btn btn-success" 
-                ng-click="addCategoria()">
-                <b class="icon-plus-sign"></b>Adicionar Categoria
+                ng-click="addOrientador()">
+                <b class="icon-plus-sign"></b>Adicionar Orientador
         </button>
     </p>
 </div>

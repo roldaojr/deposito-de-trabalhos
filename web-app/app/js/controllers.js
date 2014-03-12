@@ -25,10 +25,12 @@
             $scope.$emit('event:logoutRequest');
         };
 
-
     }]);
 
-    as.controller('CategoriaListCtrl', ['$scope', '$rootScope', '$http', '$location', 'apiUrl', function($scope, $rootScope, $http, $location, apiUrl) {
+    /**
+     * Categorias
+     */
+    as.controller('ListCategoriaCtrl', ['$scope', '$rootScope', '$http', '$location', 'apiUrl', function($scope, $rootScope, $http, $location, apiUrl) {
         var load = function() {
             console.log('call load()...');
             $http.get(apiUrl + '/categorias.json')
@@ -43,19 +45,19 @@
 
         $scope.addCategoria = function() {
             console.log('call addCategoria');
-            $location.path("/categorias/new");
+            $location.path("/categoria/new");
         }
 
         $scope.editCategoria = function(index) {
             console.log('call editCategoria');
-            $location.path('/categorias/edit/' + $scope.categorias[index].id);
+            $location.path('/categoria/edit/' + $scope.categorias[index].id);
         }
 
         $scope.delCategoria = function(index) {
             console.log('call delCategoria');
             var todel = $scope.categorias[index];
             $http
-                    .delete(apiUrl + '/categorias/' + todel.id + '.json')
+                    .delete(apiUrl + '/categoria/' + todel.id + '.json')
                     .success(function(data, status, headers, config) {
                         load();
                     }).error(function(data, status, headers, config) {
@@ -79,12 +81,11 @@
         }
     }]);
 
-    as.controller('EditCategoriaCtrl', ['$scope', '$rootScope', '$http', '$location', 'apiUrl', function($scope, $rootScope, $http, $routeParams, $location, apiUrl) {
+    as.controller('EditCategoriaCtrl', ['$scope', '$rootScope', '$http', '$routeParams', '$location', 'apiUrl', function($scope, $rootScope, $http, $routeParams, $location, apiUrl) {
 
         var load = function() {
             console.log('call load()...');
-            console.log($routeParams['id'])
-            $http.get(apiUrl + '/categorias/' + $routeParams['id'] + '.json')
+            $http.get(apiUrl + '/categorias/' + $routeParams.id + '.json')
                     .success(function(data, status, headers, config) {
                         $scope.categoria = data;
                         angular.copy($scope.categoria, $scope.copy);
@@ -93,7 +94,7 @@
 
         load();
 
-        //$scope.categoria = {};
+        $scope.categoria = {};
 
         $scope.updateCategoria = function() {
             console.log('call updateCategoria');
@@ -101,6 +102,84 @@
                     .put(apiUrl + '/categorias/' + $scope.categoria.id + '.json',  $scope.categoria)
                     .success(function(data, status, headers, config) {
                         $location.path('/categorias');
+                    }).error(function(data, status, headers, config) {
+            });
+        }
+    }]);
+
+    /**
+     * Orientador
+     */
+    as.controller('ListOrientadorCtrl', ['$scope', '$rootScope', '$http', '$location', 'apiUrl', function($scope, $rootScope, $http, $location, apiUrl) {
+        var load = function() {
+            console.log('call load()...');
+            $http.get(apiUrl + '/orientadores.json')
+                    .success(function(data, status, headers, config) {
+                        console.log(data)
+                        $scope.orientadores = data;
+                        angular.copy($scope.orientadores, $scope.copy);
+                    });
+        }
+
+        load();
+
+        $scope.addOrientador = function() {
+            console.log('call addOrientador');
+            $location.path("/orientadores/new");
+        }
+
+        $scope.editOrientador = function(index) {
+            console.log('call editOrientador');
+            $location.path('/orientadores/edit/' + $scope.orientadores[index].id);
+        }
+
+        $scope.delOrientador = function(index) {
+            console.log('call delOrientador');
+            var todel = $scope.orientadores[index];
+            $http
+                    .delete(apiUrl + '/orientadores/' + todel.id + '.json')
+                    .success(function(data, status, headers, config) {
+                        load();
+                    }).error(function(data, status, headers, config) {
+            });
+        }
+    }]);
+
+    as.controller('NewOrientadorCtrl', ['$scope', '$rootScope', '$http', '$location', 'apiUrl', function($scope, $rootScope, $http, $location, apiUrl) {
+
+        $scope.orientador = {};
+
+        $scope.saveOrientador = function() {
+            console.log('call saveOrientador');
+            $http
+                    .post(apiUrl + '/orientadores.json', $scope.orientador)
+                    .success(function(data, status, headers, config) {
+                        $location.path('/orientadores');
+                    }).error(function(data, status, headers, config) {
+            });
+        }
+    }]);
+
+    as.controller('EditOrientadorCtrl', ['$scope', '$rootScope', '$http', '$routeParams', '$location', 'apiUrl', function($scope, $rootScope, $http, $routeParams, $location, apiUrl) {
+
+        var load = function() {
+            console.log('call load()...');
+            $http.get(apiUrl + '/orientadores/' + $routeParams.id + '.json')
+                    .success(function(data, status, headers, config) {
+                        $scope.orientador = data;
+                        angular.copy($scope.orientador, $scope.copy);
+                    });
+        }
+
+        load();
+        $scope.orientador = {};
+
+        $scope.updateOrientador = function() {
+            console.log('call updateOrientador');
+            $http
+                    .put(apiUrl + '/orientadores/' + $scope.orientador.id + '.json',  $scope.orientador)
+                    .success(function(data, status, headers, config) {
+                        $location.path('/orientadores');
                     }).error(function(data, status, headers, config) {
             });
         }

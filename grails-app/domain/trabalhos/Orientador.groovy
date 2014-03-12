@@ -3,7 +3,7 @@ import grails.rest.Resource;
 /**
  * Orientador de um trabalho
  */
-@Resource()
+@Resource(uri='/api/orientadores')
 class Orientador {
 	String nome
 

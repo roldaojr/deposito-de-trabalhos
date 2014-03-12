@@ -3,7 +3,7 @@ import grails.rest.Resource;
 /**
  * Trabalho arquivoado no sistema
  */
-@Resource()
+@Resource(uri='/api/trabalhos')
 class Trabalho {
 	String titulo     // titulo do trabalho
 	String assunto    // assunto
@@ -13,9 +13,13 @@ class Trabalho {
 	Boolean aprovado  // se o trabalho foi aprovado
 
 	static belongsTo = [
-		orientador: Orientador,
+		orientador: Orientador
+	]
+
+	static hasMany = [
 		categoria: Categoria,
 		autor: Autor,
+		termos_chave: TermoChave,
 	]
 
 	static constraints = {

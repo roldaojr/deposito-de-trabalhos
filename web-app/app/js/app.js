@@ -13,9 +13,12 @@
     as.value('apiUrl', 'http://localhost:8080/deposito-de-trabalhos/api');
     as.config(function($routeProvider, $httpProvider) {
         $routeProvider
-                .when('/categorias', {templateUrl: 'partials/categorias.html', controller: 'CategoriaListCtrl'})
-                .when('/categorias/new', {templateUrl: 'partials/new.html', controller: 'NewCategoriaCtrl'})
-                .when('/categorias/edit/:id', {templateUrl: 'partials/edit.html', controller: 'EditCategoriaCtrl'})
+                .when('/categorias', {templateUrl: 'partials/categoria/list.html', controller: 'ListCategoriaCtrl'})
+                .when('/categorias/new', {templateUrl: 'partials/categoria/new.html', controller: 'NewCategoriaCtrl'})
+                .when('/categorias/edit/:id', {templateUrl: 'partials/categoria/edit.html', controller: 'EditCategoriaCtrl'})
+                .when('/orientadores', {templateUrl: 'partials/orientador/list.html', controller: 'ListOrientadorCtrl'})
+                .when('/orientadores/new', {templateUrl: 'partials/orientador/new.html', controller: 'NewOrientadorCtrl'})
+                .when('/orientadores/edit/:id', {templateUrl: 'partials/orientador/edit.html', controller: 'EditOrientadorCtrl'})
                 .otherwise({redirectTo: '/'});
        // $httpProvider.defaults.useXDomain = true;
        // delete $httpProvider.defaults.headers.common["X-Requested-With"];
