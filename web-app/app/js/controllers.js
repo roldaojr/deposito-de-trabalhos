@@ -184,4 +184,89 @@
             });
         }
     }]);
+
+    /**
+     * Trabalhos
+     */
+    as.controller('ListTrabalhoCtrl', ['$scope', '$rootScope', '$http', '$location', 'apiUrl', function($scope, $rootScope, $http, $location, apiUrl) {
+        var load = function() {
+            console.log('call load()...');
+            $http.get(apiUrl + '/trabalhos.json')
+                    .success(function(data, status, headers, config) {
+                        console.log(data)
+                        $scope.trabalhos = data;
+                        angular.copy($scope.trabalhos, $scope.copy);
+                    });
+        }
+
+        load();
+
+        $scope.addTrabalho = function() {
+            console.log('call addTrabalho');
+            $location.path("/trabalhos/new");
+        }
+
+        $scope.editTrabalho = function(index) {
+            console.log('call editTrabalho');
+            $location.path('/trabalhos/edit/' + $scope.trabalhos[index].id);
+        }
+
+        $scope.delTrabalho = function(index) {
+            console.log('call delTrabalho');
+            var todel = $scope.trabalhos[index];
+            $http
+                    .delete(apiUrl + '/trabalhos/' + todel.id + '.json')
+                    .success(function(data, status, headers, config) {
+                        load();
+                    }).error(function(data, status, headers, config) {
+            });
+        }
+
+    }]);
+
+    as.controller('NewTrabalhoCtrl', ['$scope', '$rootScope', '$http', '$location', 'apiUrl', function($scope, $rootScope, $http, $location, apiUrl) {
+
+        $scope.trabalho = {};
+
+        $scope.saveTrabalho = function() {
+            console.log('call saveTrabalho');
+            $scope.trabalho.publicado = new Date();
+            $scope.trabalho.enviado = new Date();
+            $http
+                    .post(apiUrl + '/trabalhos.json', $scope.trabalho)
+                    .success(function(data, status, headers, config) {
+                        $location.path('/trabalhos');
+                    }).error(function(data, status, headers, config) {
+                        for(i in data["errors"]) {
+                            data["errors"][i]
+                        }
+            });
+        }
+    }]);
+
+    as.controller('EditTrabalhoCtrl', ['$scope', '$rootScope', '$http', '$routeParams', '$location', 'apiUrl', function($scope, $rootScope, $http, $routeParams, $location, apiUrl) {
+
+        var load = function() {
+            console.log('call load()...');
+            $http.get(apiUrl + '/trabalhos/' + $routeParams.id + '.json')
+                    .success(function(data, status, headers, config) {
+                        $scope.trabalho = data;
+                        angular.copy($scope.trabalho, $scope.copy);
+                    });
+        }
+
+        load();
+
+        $scope.trabalho = {};
+
+        $scope.updateTrabalho = function() {
+            console.log('call updateTrabalho');
+            $http
+                    .put(apiUrl + '/trabalhos/' + $scope.trabalho.id + '.json',  $scope.trabalho)
+                    .success(function(data, status, headers, config) {
+                        $location.path('/trabalhos');
+                    }).error(function(data, status, headers, config) {
+            });
+        }
+    }]);
 }());

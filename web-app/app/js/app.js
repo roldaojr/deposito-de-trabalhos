@@ -19,6 +19,9 @@
                 .when('/orientadores', {templateUrl: 'partials/orientador/list.html', controller: 'ListOrientadorCtrl'})
                 .when('/orientadores/new', {templateUrl: 'partials/orientador/new.html', controller: 'NewOrientadorCtrl'})
                 .when('/orientadores/edit/:id', {templateUrl: 'partials/orientador/edit.html', controller: 'EditOrientadorCtrl'})
+                .when('/trabalhos', {templateUrl: 'partials/trabalho/list.html', controller: 'ListTrabalhoCtrl'})
+                .when('/trabalhos/new', {templateUrl: 'partials/trabalho/new.html', controller: 'NewTrabalhoCtrl'})
+                .when('/trabalhos/edit/:id', {templateUrl: 'partials/trabalho/edit.html', controller: 'EditTrabalhoCtrl'})
                 .otherwise({redirectTo: '/'});
        // $httpProvider.defaults.useXDomain = true;
        // delete $httpProvider.defaults.headers.common["X-Requested-With"];
