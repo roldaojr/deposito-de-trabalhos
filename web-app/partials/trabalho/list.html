@@ -1,0 +1,35 @@
+<div ng-controller="ListTrabalhoCtrl">
+    <h1 class="page-header">Trabalhos</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <td>Titulo</td>
+                <td>Assunto</td>
+                <td>Enviado</td>
+                <td>Publicado</td>
+                <td>Aprovado</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="e in trabalhos">
+                <td>{{e.titulo}}</td>
+                <td>{{e.assunto}}</td>
+                <td>{{e.publicado}}</td>
+                <td>{{e.enviado}}</td>
+                <td>{{e.aprovado}}</td>
+                <td class="col-md-1">
+                    <a title="Publicar" ng-show="trabalho.aprovado == false" ng-click="aprovarTrabalho($index)"><i class="icon-bullhorn"></i></a>
+                    &nbsp;
+                    <a title="Editar" ng-click="editTrabalho($index)"><i class="icon-pencil"></i></a>
+                    &nbsp;
+                    <a title="Apagar" ng-click="delTrabalho($index)"><i class="icon-remove-circle"></i></a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <p>
+        <button type="button" class="btn btn-success" ng-click="addTrabalho()">
+            <b class="icon-plus-sign"></b>Adicionar Trabalho
+        </button>
+    </p>
+</div>

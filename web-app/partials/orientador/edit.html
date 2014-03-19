@@ -1,0 +1,17 @@
+<div ng-controller="EditOrientadorCtrl">
+	<form class="form-horizontal">
+		<h1 class="page-header"><msg key="Edit Leader"/> ({{orientador.nome}})</h1>
+		<fieldset>
+			<div class="control-group">
+				<label class="control-label" for="nome"><msg key="Name"/></label>
+				<div class="controls">
+					<input id="nome" type="text" class="input-block-level"
+						required="true" ng-model="orientador.nome"></input>
+				</div>
+			</div>
+		</fieldset>
+		<div class="form-actions">
+			<button ng-click="updateOrientador()" class="btn btn-primary"><msg key="Save"/></button>
+		</div>
+	</form>
+</div>
