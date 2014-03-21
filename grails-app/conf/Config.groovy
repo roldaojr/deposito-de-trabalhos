@@ -113,3 +113,28 @@ log4j = {
            'org.hibernate',
            'net.sf.ehcache.hibernate'
 }
+
+//grails.plugin.springsecurity.useBasicAuth = true
+//grails.plugin.springsecurity.basic.realmName = "Deposito de trabalhos"
+// Added by the Spring Security Core plugin:
+grails.plugin.springsecurity.userLookup.userDomainClassName = 'trabalhos.User'
+grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'trabalhos.UserRole'
+grails.plugin.springsecurity.authority.className = 'trabalhos.Role'
+grails.plugin.springsecurity.controllerAnnotations.staticRules = [
+	'/':                              ['permitAll'],
+	'/index':                         ['permitAll'],
+    '/index2':                        ['permitAll'],
+	'/index.gsp':                     ['permitAll'],
+	'/**/js/**':                      ['permitAll'],
+	'/**/css/**':                     ['permitAll'],
+	'/**/images/**':                  ['permitAll'],
+	'/**/favicon.ico':                ['permitAll'],
+
+    '/**/lib/**':                     ['permitAll'],
+    '/**/img/**':                     ['permitAll'],
+    '/**/i18n/**':                    ['permitAll'],
+    '/**/partials/**':                ['permitAll'],
+
+    '/**/user/**':                    ['permitAll'],
+]
+
