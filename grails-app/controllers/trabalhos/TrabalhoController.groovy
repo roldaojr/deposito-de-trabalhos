@@ -10,6 +10,9 @@ class TrabalhoController extends RestfulController {
 	TrabalhoController() {
 		super(Trabalho)
 	}
+    def view() {
+        render(view:"${params.view}")
+    }
     def find() {
         Trabalho.createCriteria()
         respond Trabalho.list {

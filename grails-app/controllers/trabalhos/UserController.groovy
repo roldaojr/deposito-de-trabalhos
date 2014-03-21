@@ -9,4 +9,11 @@ class UserController extends RestfulController {
 	UserController() {
 		super(User)
 	}
+	def view() {
+		render(view:"${params.view}")
+	}
+	def get() {
+		def user = User.findByUsername(params.username)
+		render user as JSON
+	}
 }

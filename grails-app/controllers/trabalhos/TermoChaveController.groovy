@@ -8,6 +8,9 @@ class TermoChaveController extends RestfulController {
 	TermoChaveController() {
 		super(TermoChave)
 	}
+	def view() {
+		render(view:"${params.view}")
+	}
     def find() {
         respond TermoChave.findAllByNomeIlike("%"+params.nome+"%")
     }

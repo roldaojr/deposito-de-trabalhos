@@ -8,6 +8,9 @@ class AutorController extends RestfulController {
 	AutorController() {
 		super(Autor)
 	}
+	def view() {
+		render(view:"${params.view}")
+	}
     def find() {
         respond Autor.findAllByNomeIlike("%"+params.nome+"%")//, model:[autorInstanceCount: Categoria.count()]
     }

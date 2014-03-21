@@ -11,7 +11,9 @@ class CategoriaController extends RestfulController {
     CategoriaController() {
         super(Categoria)
     }
-
+    def view() {
+        render(view:"${params.view}")
+    }
     def find() {
         respond Categoria.findAllByNomeIlike("%"+params.nome+"%")
     }

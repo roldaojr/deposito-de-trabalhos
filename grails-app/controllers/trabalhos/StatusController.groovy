@@ -11,10 +11,11 @@ class StatusController {
 
 	def index() {
 		if(springSecurityService.isLoggedIn()) {
-			render([user:springSecurityService.currentUser] as JSON)
-		}else {
-			response.sendError HttpServletResponse.SC_UNAUTHORIZED
+			def user = springSecurityService.currentUser
+			render([user:user,authorities:user.getAuthorities()] as JSON)
+		} else {
+			//response.sendError HttpServletResponse.SC_UNAUTHORIZED
+			render([user:null,authorities:null] as JSON)
 		}
 	}
-	
 }

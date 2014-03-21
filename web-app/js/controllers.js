@@ -25,6 +25,12 @@
             $scope.$emit('event:logoutRequest');
         };
 
+        $http.get(apiUrl + '/status').success(function(data) {
+            console.log('status @');
+            console.log(data);
+            $rootScope.user = data.user
+            $rootScope.authorities = data.authorities
+        });
     }]);
 
     /**
@@ -106,7 +112,7 @@
 			.put(apiUrl + '/categoria/update/' + $scope.categoria.id + '.json',  $scope.categoria)
 			.success(function(data, status, headers, config) {
 				if(!data.error) {
-					showMessage($.i18n.prop('SaveSuccess'), 'success');
+					showMessage('Registro salvo com exito', 'success');
 					$location.path('/categorias');
 				} else {
 					showMessage(data.error, 'error');
